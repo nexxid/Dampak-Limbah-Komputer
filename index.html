@@ -386,16 +386,16 @@
                         <div class="member-name">Auliah</div>
                     </div>
                     <div class="member-card" onclick="highlightMember(this)">
-                        <div class="member-name">Desi</div>
+                        <div class="member-name">Desy</div>
+                    </div>
+                    <div class="member-card" onclick="highlightMember(this)">
+                        <div class="member-name">Erapati</div>
                     </div>
                     <div class="member-card" onclick="highlightMember(this)">
                         <div class="member-name">Erapani</div>
                     </div>
                     <div class="member-card" onclick="highlightMember(this)">
-                        <div class="member-name">Ika</div>
-                    </div>
-                    <div class="member-card" onclick="highlightMember(this)">
-                        <div class="member-name">Nadiya</div>
+                        <div class="member-name">Nadia</div>
                     </div>
                     <div class="member-card" onclick="highlightMember(this)">
                         <div class="member-name">Teguh</div>
@@ -420,7 +420,7 @@
                 </p>
 
                 <div class="devices-grid">
-                    <div class="device-card" onclick="toggleExpand('monitor')">
+                    <div class="device-card">
                         <div class="device-icon">🖥️</div>
                         <h3 class="device-title">Monitor</h3>
                         <p class="device-description">
@@ -433,7 +433,7 @@
                             <li><strong>Kadmium:</strong> Karsinogenik</li>
                             <li><strong>Fosfor:</strong> Beracun jika terbakar</li>
                         </ul>
-                        <button class="expand-btn">Pelajari Lebih Lanjut</button>
+                        <button class="expand-btn" onclick="toggleExpand('monitor')">Pelajari Lebih Lanjut</button>
                         <div class="expanded-content" id="monitor-expanded">
                             <h4>Dampak Detail Monitor Terhadap Lingkungan:</h4>
                             <p><strong>Pencemaran Tanah:</strong> Timbal dan kadmium dari monitor dapat meresap ke dalam tanah dan mencemari groundwater selama puluhan tahun.</p>
@@ -443,7 +443,7 @@
                         </div>
                     </div>
 
-                    <div class="device-card" onclick="toggleExpand('pc')">
+                    <div class="device-card">
                         <div class="device-icon">💻</div>
                         <h3 class="device-title">PC (Personal Computer)</h3>
                         <p class="device-description">
@@ -456,7 +456,7 @@
                             <li><strong>Asam Sulfat:</strong> Dari baterai CMOS</li>
                             <li><strong>Rare Earth Elements:</strong> Sulit didaur ulang</li>
                         </ul>
-                        <button class="expand-btn">Pelajari Lebih Lanjut</button>
+                        <button class="expand-btn" onclick="toggleExpand('pc')">Pelajari Lebih Lanjut</button>
                         <div class="expanded-content" id="pc-expanded">
                             <h4>Dampak Detail PC Terhadap Lingkungan:</h4>
                             <p><strong>Eksploitasi Sumber Daya:</strong> Produksi PC membutuhkan rare earth elements yang penambangannya merusak ekosistem.</p>
@@ -466,7 +466,7 @@
                         </div>
                     </div>
 
-                    <div class="device-card" onclick="toggleExpand('laptop')">
+                    <div class="device-card">
                         <div class="device-icon">💻</div>
                         <h3 class="device-title">Laptop</h3>
                         <p class="device-description">
@@ -479,7 +479,7 @@
                             <li><strong>Plastik:</strong> Non-biodegradable</li>
                             <li><strong>Layar LCD/LED:</strong> Mengandung merkuri</li>
                         </ul>
-                        <button class="expand-btn">Pelajari Lebih Lanjut</button>
+                        <button class="expand-btn" onclick="toggleExpand('laptop')">Pelajari Lebih Lanjut</button>
                         <div class="expanded-content" id="laptop-expanded">
                             <h4>Dampak Detail Laptop Terhadap Lingkungan:</h4>
                             <p><strong>Baterai Berbahaya:</strong> Baterai laptop yang dibuang sembarangan dapat meledak dan melepaskan bahan kimia beracun ke lingkungan.</p>
@@ -517,4 +517,107 @@
                 <div>
                     <p>&copy; 2025 TJKT 1 Kelompok 1 - Dampak Limbah Komputer Terhadap Lingkungan</p>
                 </div>
-                <div class=
+                <div class="footer-links">
+                    <a href="#" onclick="scrollToTop()">Kembali ke Atas</a>
+                    <a href="#" onclick="showInfo()">Info Lebih Lanjut</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button class="scroll-to-top" onclick="scrollToTop()">↑</button>
+
+    <script>
+        function highlightMember(element) {
+            document.querySelectorAll('.member-card').forEach(card => {
+                card.style.background = 'rgba(255, 255, 255, 0.9)';
+                card.style.transform = 'scale(1)';
+            });
+            
+            element.style.background = 'linear-gradient(135deg, #00bcd4, #4dd0e1)';
+            element.style.color = 'white';
+            element.style.transform = 'scale(1.1)';
+            
+            setTimeout(() => {
+                element.style.background = 'rgba(255, 255, 255, 0.9)';
+                element.style.color = '#37474f';
+                element.style.transform = 'scale(1)';
+            }, 2000);
+        }
+
+        function toggleExpand(deviceId) {
+            const expandedContent = document.getElementById(deviceId + '-expanded');
+            const button = expandedContent.previousElementSibling;
+            
+            if (expandedContent.classList.contains('show')) {
+                expandedContent.classList.remove('show');
+                button.textContent = 'Pelajari Lebih Lanjut';
+            } else {
+                expandedContent.classList.add('show');
+                button.textContent = 'Tutup';
+            }
+        }
+
+        window.addEventListener('scroll', function() {
+            const scrollToTopBtn = document.querySelector('.scroll-to-top');
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('show');
+            } else {
+                scrollToTopBtn.classList.remove('show');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        function showInfo() {
+            alert('Untuk informasi lebih lanjut tentang pengelolaan limbah elektronik, hubungi pusat daur ulang elektronik terdekat atau kunjungi situs web pemerintah tentang pengelolaan limbah B3.');
+        }
+
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.content-section, .device-card');
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                const windowHeight = window.innerHeight;
+                const scrollTop = window.pageYOffset;
+
+                if (scrollTop > (sectionTop - windowHeight + sectionHeight / 4)) {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.content-section, .device-card');
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(30px)';
+                section.style.transition = 'all 0.6s ease';
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const title = document.querySelector('h1');
+            const text = title.textContent;
+            title.textContent = '';
+            
+            let i = 0;
+            const typeWriter = () => {
+                if (i < text.length) {
+                    title.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 100);
+                }
+            };
+            
+            setTimeout(typeWriter, 500);
+        });
+    </script>
+</body>
+</html>
