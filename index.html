@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dampak Limbah Komputer - Kelompok 1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(0, 151, 167, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><defs><radialGradient id="a"><stop offset="20%" stop-color="%23fff" stop-opacity=".1"/><stop offset="100%" stop-color="%23fff" stop-opacity="0"/></radialGradient></defs><circle fill="url(%23a)" cx="10" cy="10" r="10"/><circle fill="url(%23a)" cx="50" cy="10" r="10"/><circle fill="url(%23a)" cx="90" cy="10" r="10"/></svg>');
+            opacity: 0.3;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .subtitle {
+            color: #e0f7fa;
+            text-align: center;
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+            font-weight: 500;
+        }
+
+        .members-section {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .members-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .members-title {
+            color: white;
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .member-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .member-card:hover {
+            transform: scale(1.05);
+            border-color: #00bcd4;
+            box-shadow: 0 5px 15px rgba(0, 188, 212, 0.3);
+        }
+
+        .member-name {
+            color: #37474f;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        main {
+            padding: 3rem 0;
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .content-section:hover {
+            transform: translateY(-5px);
+        }
+
+        .section-title {
+            color: #00695c;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #00bcd4, #4dd0e1);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        .intro-text {
+            font-size: 1.2rem;
+            color: #546e7a;
+            text-align: center;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .devices-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .device-card {
+            background: linear-gradient(135deg, #e0f2f1, #b2dfdb);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .device-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .device-card:hover::before {
+            left: 100%;
+        }
+
+        .device-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: #00bcd4;
+            box-shadow: 0 15px 35px rgba(0, 188, 212, 0.3);
+        }
+
+        .device-icon {
+            font-size: 4rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #00695c;
+        }
+
+        .device-title {
+            color: #00695c;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .device-description {
+            color: #37474f;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .impact-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .impact-list li {
+            background: rgba(255, 255, 255, 0.7);
+            margin: 0.5rem 0;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #00bcd4;
+            transition: all 0.3s ease;
+        }
+
+        .impact-list li:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateX(10px);
+        }
+
+        .expand-btn {
+            background: linear-gradient(135deg, #00bcd4, #0097a7);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            width: 100%;
+        }
+
+        .expand-btn:hover {
+            background: linear-gradient(135deg, #0097a7, #00695c);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 151, 167, 0.4);
+        }
+
+        .expanded-content {
+            display: none;
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            border: 1px solid rgba(0, 188, 212, 0.2);
+        }
+
+        .expanded-content.show {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer {
+            background: linear-gradient(135deg, #263238, #37474f);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: #4dd0e1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #00bcd4;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .devices-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .members-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+            
+            .content-section {
+                padding: 2rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #00bcd4, #0097a7);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .scroll-to-top.show {
+            opacity: 1;
+        }
+
+        .scroll-to-top:hover {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, #0097a7, #00695c);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>TJKT 1 - Kelompok 1</h1>
+            <p class="subtitle">Dampak Limbah Komputer Terhadap Lingkungan</p>
+            
+            <div class="members-section">
+                <h2 class="members-title">Anggota Kelompok</h2>
+                <div class="members-grid">
+                    <div class="member-card" onclick="highlightMember(this)">
+                        <div class="member-name">Auliah</div>
+                    </div>
+                    <div class="member-card" onclick="highlightMember(this)">
+                        <div class="member-name">Desi</div>
+                    </div>
+                    <div class="member-card" onclick="highlightMember(this)">
+                        <div class="member-name">Erapani</div>
+                    </div>
+                    <div class="member-card" onclick="highlightMember(this)">
+                        <div class="member-name">Ika</div>
+                    </div>
+                    <div class="member-card" onclick="highlightMember(this)">
+                        <div class="member-name">Nadiya</div>
+                    </div>
+                    <div class="member-card" onclick="highlightMember(this)">
+                        <div class="member-name">Teguh</div>
+                    </div>
+                    <div class="member-card" onclick="highlightMember(this)">
+                        <div class="member-name">Silvi</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="content-section">
+                <h2 class="section-title">Dampak Limbah Komputer Terhadap Lingkungan</h2>
+                <p class="intro-text">
+                    Perkembangan teknologi komputer yang pesat telah memberikan banyak manfaat bagi kehidupan manusia. 
+                    Namun, di balik kemudahan tersebut, terdapat dampak serius terhadap lingkungan yang perlu kita pahami. 
+                    Limbah elektronik atau e-waste dari perangkat komputer seperti monitor, PC, dan laptop mengandung 
+                    berbagai bahan berbahaya yang dapat mencemari lingkungan dan membahayakan kesehatan.
+                </p>
+
+                <div class="devices-grid">
+                    <div class="device-card" onclick="toggleExpand('monitor')">
+                        <div class="device-icon">🖥️</div>
+                        <h3 class="device-title">Monitor</h3>
+                        <p class="device-description">
+                            Monitor komputer, terutama jenis CRT (Cathode Ray Tube) dan LCD lama, mengandung berbagai bahan kimia berbahaya 
+                            yang dapat merusak lingkungan jika tidak dikelola dengan benar.
+                        </p>
+                        <ul class="impact-list">
+                            <li><strong>Timbal:</strong> Racun bagi sistem saraf</li>
+                            <li><strong>Merkuri:</strong> Mencemari air dan tanah</li>
+                            <li><strong>Kadmium:</strong> Karsinogenik</li>
+                            <li><strong>Fosfor:</strong> Beracun jika terbakar</li>
+                        </ul>
+                        <button class="expand-btn">Pelajari Lebih Lanjut</button>
+                        <div class="expanded-content" id="monitor-expanded">
+                            <h4>Dampak Detail Monitor Terhadap Lingkungan:</h4>
+                            <p><strong>Pencemaran Tanah:</strong> Timbal dan kadmium dari monitor dapat meresap ke dalam tanah dan mencemari groundwater selama puluhan tahun.</p>
+                            <p><strong>Pencemaran Udara:</strong> Pembakaran monitor yang tidak tepat dapat melepaskan gas beracun seperti dioksin dan furan.</p>
+                            <p><strong>Dampak Kesehatan:</strong> Paparan jangka panjang dapat menyebabkan kerusakan ginjal, sistem saraf, dan kanker.</p>
+                            <p><strong>Solusi:</strong> Daur ulang melalui pusat daur ulang elektronik berlisensi dan pilih monitor LED yang lebih ramah lingkungan.</p>
+                        </div>
+                    </div>
+
+                    <div class="device-card" onclick="toggleExpand('pc')">
+                        <div class="device-icon">💻</div>
+                        <h3 class="device-title">PC (Personal Computer)</h3>
+                        <p class="device-description">
+                            Unit PC mengandung berbagai komponen elektronik kompleks dengan bahan-bahan yang berpotensi 
+                            mencemari lingkungan, mulai dari motherboard hingga power supply.
+                        </p>
+                        <ul class="impact-list">
+                            <li><strong>Logam Berat:</strong> Timbal, kadmium, merkuri</li>
+                            <li><strong>Plastik BFR:</strong> Flame retardant beracun</li>
+                            <li><strong>Asam Sulfat:</strong> Dari baterai CMOS</li>
+                            <li><strong>Rare Earth Elements:</strong> Sulit didaur ulang</li>
+                        </ul>
+                        <button class="expand-btn">Pelajari Lebih Lanjut</button>
+                        <div class="expanded-content" id="pc-expanded">
+                            <h4>Dampak Detail PC Terhadap Lingkungan:</h4>
+                            <p><strong>Eksploitasi Sumber Daya:</strong> Produksi PC membutuhkan rare earth elements yang penambangannya merusak ekosistem.</p>
+                            <p><strong>Konsumsi Energi:</strong> Proses manufaktur PC menghasilkan jejak karbon yang signifikan.</p>
+                            <p><strong>Limbah Elektronik:</strong> Komponen PC yang tidak dapat terurai secara alami akan menumpuk di TPA selama ratusan tahun.</p>
+                            <p><strong>Solusi:</strong> Upgrade komponen alih-alih membeli PC baru, pilih PC dengan sertifikat ENERGY STAR, dan pastikan daur ulang yang tepat.</p>
+                        </div>
+                    </div>
+
+                    <div class="device-card" onclick="toggleExpand('laptop')">
+                        <div class="device-icon">💻</div>
+                        <h3 class="device-title">Laptop</h3>
+                        <p class="device-description">
+                            Laptop memiliki komponen yang lebih padat dengan baterai lithium-ion yang memerlukan penanganan khusus 
+                            untuk mencegah dampak negatif terhadap lingkungan.
+                        </p>
+                        <ul class="impact-list">
+                            <li><strong>Baterai Li-ion:</strong> Beracun dan mudah terbakar</li>
+                            <li><strong>Kobalt:</strong> Eksploitasi pertambangan</li>
+                            <li><strong>Plastik:</strong> Non-biodegradable</li>
+                            <li><strong>Layar LCD/LED:</strong> Mengandung merkuri</li>
+                        </ul>
+                        <button class="expand-btn">Pelajari Lebih Lanjut</button>
+                        <div class="expanded-content" id="laptop-expanded">
+                            <h4>Dampak Detail Laptop Terhadap Lingkungan:</h4>
+                            <p><strong>Baterai Berbahaya:</strong> Baterai laptop yang dibuang sembarangan dapat meledak dan melepaskan bahan kimia beracun ke lingkungan.</p>
+                            <p><strong>Konflik Mineral:</strong> Kobalt yang digunakan dalam baterai sering berasal dari pertambangan yang merusak lingkungan dan eksploitatif.</p>
+                            <p><strong>Jejak Karbon:</strong> Produksi laptop menghasilkan 300-400 kg CO2 equivalent per unit.</p>
+                            <p><strong>Solusi:</strong> Perpanjang umur laptop dengan perawatan yang baik, gunakan laptop bekas yang masih layak, dan pastikan daur ulang baterai melalui program take-back manufacturer.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title">Langkah-Langkah Pencegahan</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                    <div style="background: linear-gradient(135deg, #e8f5e8, #c8e6c9); padding: 2rem; border-radius: 15px;">
+                        <h3 style="color: #2e7d32; margin-bottom: 1rem;">🔄 Reduce, Reuse, Recycle</h3>
+                        <p>Kurangi konsumsi, gunakan kembali komponen yang masih baik, dan daur ulang melalui pusat daur ulang berlisensi.</p>
+                    </div>
+                    <div style="background: linear-gradient(135deg, #e3f2fd, #bbdefb); padding: 2rem; border-radius: 15px;">
+                        <h3 style="color: #1976d2; margin-bottom: 1rem;">⚡ Pilih Produk Ramah Lingkungan</h3>
+                        <p>Beli perangkat dengan sertifikat ENERGY STAR dan EPEAT untuk mengurangi dampak lingkungan.</p>
+                    </div>
+                    <div style="background: linear-gradient(135deg, #fff3e0, #ffe0b2); padding: 2rem; border-radius: 15px;">
+                        <h3 style="color: #f57c00; margin-bottom: 1rem;">🔧 Perawatan Optimal</h3>
+                        <p>Rawat perangkat dengan baik untuk memperpanjang umur dan mengurangi frekuensi penggantian.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <p>&copy; 2025 TJKT 1 Kelompok 1 - Dampak Limbah Komputer Terhadap Lingkungan</p>
+                </div>
+                <div class=
